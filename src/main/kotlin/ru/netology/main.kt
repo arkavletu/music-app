@@ -13,9 +13,10 @@ fun main() {
 
 }
 fun checkDiscount(nowPurchase: Double, previousPurchases: Double): Double {
-    return if (previousPurchases in 1001.00..10000.00)
-        nowPurchase - 100
-    else if (previousPurchases > 10000)
-        nowPurchase - nowPurchase * 0.05
-    else nowPurchase
+    return when (previousPurchases) {
+        in 0.0..1000.0 -> nowPurchase
+        in 1001.0..10000.0 -> nowPurchase - 100
+        else -> nowPurchase * 0.05
+    }
 }
+

@@ -1,26 +1,21 @@
 package ru.netology
 
 fun main() {
-    val isRegularCustomer = false
-    val previousPurchases = 0
-    val nowPurchase = 2000530
+    val isRegularCustomer = true
+    val previousPurchases = 0.0
+    val nowPurchase = 500.0
+    val price = checkDiscount(nowPurchase, previousPurchases)
+    val discountRegular = if(!isRegularCustomer) 0.0 else price * 0.01
+    val finalSum = price - discountRegular
 
-    val discount = when (previousPurchases) {
-        in 0..1000 -> 0
-        in 1001..10000 -> 100
-        else -> {
-            nowPurchase * 0.05
-        }
-    }.toInt()
-
-    val discountForRegularCustomer = if (isRegularCustomer) (nowPurchase - discount) * 0.01 else 0
-
-    val sum = (nowPurchase - discount) - discountForRegularCustomer.toInt()
-
-    val roubles = sum / 100
-    val cents = sum % 100
-
-    println("Сумма вашей покупки: $roubles рублей $cents копеек")
+    println("Сумма вашей покупки: $finalSum рублей")
 
 
+}
+fun checkDiscount(nowPurchase: Double, previousPurchases: Double): Double {
+    return if (previousPurchases in 1001.00..10000.00)
+        nowPurchase - 100
+    else if (previousPurchases > 10000)
+        nowPurchase - nowPurchase * 0.05
+    else nowPurchase
 }

@@ -4,9 +4,9 @@ import kotlin.math.roundToInt
 
 fun main() {
     val isRegularCustomer = false
-    val previousPurchases = 1_000.5
-    val nowPurchase = 500.0
-    val price = checkDiscount(nowPurchase, previousPurchases).roundToInt()
+    val previousPurchases = 1001
+    val nowPurchase = 500
+    val price = checkDiscount(nowPurchase, previousPurchases)
     val discountRegular = if (!isRegularCustomer) 0 else (price * 0.01).roundToInt()
     val sum = price - discountRegular
     val message = formattedMessage(sum)
@@ -15,15 +15,17 @@ fun main() {
 
 }
 
-fun checkDiscount(nowPurchase: Double, previousPurchases: Double): Double {
-    return if (previousPurchases > 10000) nowPurchase * 0.95
+fun checkDiscount(nowPurchase: Int, previousPurchases: Int): Int {
+    return if (previousPurchases > 10000) (nowPurchase * 0.95).roundToInt()
     else if (previousPurchases > 1000) nowPurchase - 100
     else nowPurchase
 
 }
 
 fun formattedMessage(sum: Int): String {
-    return "Сумма вашей покупки: $sum рублей"
+    val roubles = sum / 100
+    val cents = sum % 100
+    return "Сумма вашей покупки: $roubles рублей $cents копеек"
 }
 
 

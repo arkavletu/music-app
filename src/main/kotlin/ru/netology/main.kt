@@ -20,14 +20,14 @@ fun checkDiscount(nowPurchase: Int, previousPurchases: Int): Int {
 
 }
 
+fun priceForRegular (sum: Int): Int{
+    return (sum - sum * 0.01).roundToInt()
+}
+
 fun formattedMessage(sum: Int): String {
     val roubles = sum / 100
     val cents = sum % 100
     return "Сумма вашей покупки: $roubles рублей $cents копеек"
-}
-
-fun priceForRegular (sum: Int): Int{
-    return (sum - sum * 0.01).roundToInt()
 }
 
 

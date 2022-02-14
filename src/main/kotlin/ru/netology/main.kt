@@ -3,14 +3,11 @@ package ru.netology
 import kotlin.math.roundToInt
 
 fun main() {
-    val isRegularCustomer = false
     val previousPurchases = 1001
     val nowPurchase = 500
-    val price = checkDiscount(nowPurchase, previousPurchases)
-    val discountRegular = if (!isRegularCustomer) 0 else (price * 0.01).roundToInt()
-    val sum = price - discountRegular
-    val message = formattedMessage(sum)
-    println(message)
+    val price = checkDiscount(nowPurchase = nowPurchase, previousPurchases =previousPurchases)
+    val sum = price - discountRegular(sum = price, isRegular = true)
+    println(formattedMessage(sum))
 
 
 }
@@ -26,6 +23,10 @@ fun formattedMessage(sum: Int): String {
     val roubles = sum / 100
     val cents = sum % 100
     return "Сумма вашей покупки: $roubles рублей $cents копеек"
+}
+
+fun discountRegular (sum: Int, isRegular: Boolean): Int{
+    return if (!isRegular) 0 else (sum * 0.01).roundToInt()
 }
 
 

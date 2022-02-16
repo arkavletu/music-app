@@ -5,7 +5,7 @@ import kotlin.math.roundToInt
 fun main() {
     val isRegularCustomer = true
     val previousPurchases = 1001
-    val nowPurchase = 500
+    val nowPurchase = 50050
     val price = checkDiscount(nowPurchase = nowPurchase, previousPurchases =previousPurchases)
     val sum = if(!isRegularCustomer) price else priceForRegular(price)
     println(formattedMessage(sum))
@@ -15,7 +15,7 @@ fun main() {
 
 fun checkDiscount(nowPurchase: Int, previousPurchases: Int): Int {
     return if (previousPurchases > 10000) (nowPurchase * 0.95).roundToInt()
-    else if (previousPurchases > 1000) nowPurchase - 100
+    else if (previousPurchases > 1000) nowPurchase - 100 * 100
     else nowPurchase
 
 }
